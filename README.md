@@ -2,21 +2,20 @@
 Bookworm estimates how much time is needed to read a certain piece of text.
 
 ## Installation
-Currently, the only reliable way (and recommended way) to install Bookworm is by using PHP's package manager Composer.
 
-### Using Composer
-``` json
-{
-    "require": {
-        "worddrop/bookworm": "dev-master"
-    }
-}
+```shell
+composer require shtayeb/bookworm
+```
+
+## Publish the config file
+```shell
+php artisan vendor:publish
 ```
 
 ## Usage
 ``` php
 <?php
-use Bookworm\Bookworm;
+use SHTayeb\Bookworm\Bookworm;
 
 $text = '...';
 $time = Bookworm::estimate($text);
@@ -30,7 +29,7 @@ Bookworm::estimate(string $text, string|array|bool $units = [ ' minute', ' minut
 
 **Parameters**
 - `$text` The piece of text which the estimation should be based upon.
-- `$units = [ ' minute', ' minutes' ]` *Optional.* Set it to false, to return just the number of minutes as an integer. If you provide a string, like `m` it will be used for singular and plural and produce `5m`. If you provide an array with two values, the first will be used for singular, the second for plural. `[ ' minute', ' minutes' ]` (not included leading whitespace) will produce `5 minutes`.
+- `$units = [ ' minute', ' minutes' ]` *Optional.* Set it false, to return just the number of minutes as an integer. If you provide a string, like `m` it will be used for singular and plural and produce `5m`. If you provide an array with two values, the first will be used for singular, the second for plural. `[ ' minute', ' minutes' ]` (not included leading whitespace) will produce `5 minutes`.
 
 **Returns** `int` or `string`
 
@@ -52,7 +51,7 @@ Bookworm::configure([
 
 **codewordsPerMinute** The average amount of words in a code block, a user will read per minute (*default 200*).
 
-**secondsPerImage** The average amount of seconds a user will spent looking at an image (*default 12*).
+**secondsPerImage** The average amount of seconds a user will spend looking at an image (*default 12*).
 
 ## License
 This project is licensed under MIT license. For the full copyright and license information, please view the LICENSE file
