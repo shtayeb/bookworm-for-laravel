@@ -2,6 +2,7 @@
     "name": "shtayeb/bookworm",
     "description": "Bookworm estimates how much time is needed to read a certain piece of text.",
     "license": "MIT",
+    "version": "0.0.1",
     "keywords": [
         "text",
         "estimated",
