@@ -1,4 +1,4 @@
-# Bookworm (by Worddrop) [![Build Status](https://travis-ci.org/worddrop/bookworm.svg?branch=master)](https://travis-ci.org/worddrop/bookworm)
+# Bookworm For Laravel (by shtayeb) 
 Bookworm estimates how much time is needed to read a certain piece of text.
 
 ## Installation
