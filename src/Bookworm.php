@@ -25,21 +25,30 @@ class Bookworm
      *
      * @var int
      */
-    private static int $wordsPerMinute = 200;
+
+    private int $wordsPerMinute ;
 
     /**
      * The average number of words in a code section a person can read in one minute.
      *
      * @var int
      */
-    private static int $codewordsPerMinute = 200;
+    private  int $codewordsPerMinute;
 
     /**
      * The average number of seconds a person looks at an image.
      *
      * @var int
      */
-    private static int $secondsPerImage = 12;
+    private  int $secondsPerImage;
+
+
+    public function __construct(
+    ) {
+        $this->wordsPerMinute = config('bookworm.words_per_minute',200);
+        $this->codewordsPerMinute = config('bookworm.codewords_per_minute',200);
+        $this->secondsPerImage = config('bookworm.seconds_per_image',12);
+    }
 
     /**
      * Estimates the time needed to read a given string.
@@ -49,17 +58,17 @@ class Bookworm
      *
      * @return string
      */
-    public static function estimate(string $text, string|array $units = [0 => ' minute',1 => ' minutes']): string
+    public function estimate(string $text, string|array $units = [0 => ' minute',1 => ' minutes']): string
     {
         // Count how many words are in the given text
         $wordCount = self::countWords($text);
-        $wordSeconds = ($wordCount / self::$wordsPerMinute) * 60;
+        $wordSeconds = ($wordCount / $this->wordsPerMinute) * 60;
         // Count how many images are in the given text
         $imageCount = self::countImages($text);
-        $imageSeconds = $imageCount * self::$secondsPerImage;
+        $imageSeconds = $imageCount * $this->secondsPerImage;
         // Count how many images are in the given text
         $codeCount = self::countCode($text);
-        $codeSeconds = ($codeCount / self::$codewordsPerMinute) * 60;
+        $codeSeconds = ($codeCount / $this->codewordsPerMinute) * 60;
         // Calculate the amount of minutes required to read the text
         $minutes = round(($wordSeconds + $imageSeconds + $codeSeconds) / 60);
         // If it's smaller than one or one, we default it to one
@@ -160,23 +169,5 @@ class Bookworm
         // return the number words in the code blocks
         return count(array_filter(explode(' ', $code)));
     }
-    /**
-     * Alters the configuration.
-     *
-     * @param array $config
-     */
-    public static function configure(array $config = []): void
-    {
-        $config = array_merge(
-            [
-                'wordsPerMinute' => self::$wordsPerMinute,
-                'secondsPerImage' => self::$secondsPerImage,
-                'codewordsPerMinute' => self::$codewordsPerMinute,
-            ],
-            $config
-        );
-        self::$wordsPerMinute = $config['wordsPerMinute'];
-        self::$secondsPerImage = $config['secondsPerImage'];
-        self::$codewordsPerMinute = $config['codewordsPerMinute'];
-    }
+    
 }
