@@ -26,21 +26,21 @@ class Bookworm
      * @var int
      */
 
-    private int $wordsPerMinute ;
+    public int $wordsPerMinute ;
 
     /**
      * The average number of words in a code section a person can read in one minute.
      *
      * @var int
      */
-    private  int $codewordsPerMinute;
+    public  int $codewordsPerMinute;
 
     /**
      * The average number of seconds a person looks at an image.
      *
      * @var int
      */
-    private  int $secondsPerImage;
+    public  int $secondsPerImage;
 
 
     public function __construct(

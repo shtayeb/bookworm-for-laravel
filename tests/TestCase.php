@@ -4,11 +4,21 @@ namespace SHTayeb\Tests;
 
 use PHPUnit\Framework\TestCase as BaseTestCase;
 
-abstract class TestCase extends BaseTestCase
+abstract class TestCase extends \Orchestra\Testbench\TestCase
 {
     public function __construct(string $name)
     {
         parent::__construct($name);
+    }
+
+
+    public function getEnvironmentSetUp($app)
+    {
+        config([
+            'words_per_minute' =>200,
+            'codewords_per_minute' => 200,
+            'seconds_per_image' => 12
+        ]);
     }
 
     protected array $words = [
