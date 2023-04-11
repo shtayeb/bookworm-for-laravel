@@ -23,6 +23,9 @@ use SHTayeb\Bookworm\Bookworm;
 $text = '...';
 $time = (new Bookworm())->estimate($text);
 echo $time; // 5 minutes
+
+$word_count = (new Bookworm())->countWords($text);
+echo $word_count; // 1,000
 ```
 
 ## API

@@ -1,7 +1,7 @@
 <?php
 
 /*
- * Copyright (c) Jeroen Visser <jeroenvisser101@gmail.com>
+ * Shahryar Tayeb <shahryar.dev@gmail.com>
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
@@ -95,7 +95,7 @@ class Bookworm
      *
      * @return int
      */
-    private static function countWords(string $text): int
+    public static function countWords(string $text): int
     {
         // Remove markdown images from text
         $words = trim(preg_replace('/!\[([^\[]+)\]\(([^\)]+)\)/i', ' ', $text));
